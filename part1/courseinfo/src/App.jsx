@@ -27,7 +27,7 @@ const App = () => {
 }
 
 const Header = (props) => {
-  console.log('1', props);
+  console.log(props);
   return <p>{props.course}</p>
 }
 
