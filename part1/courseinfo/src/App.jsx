@@ -29,7 +29,6 @@ const App = () => {
 const Header = (props) => {
   console.log(props);
   return <p>{props.course.name}</p>
-  
 }
 
 const Part = (props) => {
