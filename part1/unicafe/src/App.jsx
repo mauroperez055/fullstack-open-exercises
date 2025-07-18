@@ -10,9 +10,7 @@ const Button = ({handleClick, text}) => {
 
 const Statistic = ({ text, value }) => {
   return (
-    <div>
-      {text} {value}
-    </div>
+    <div>{text} {value}</div>
   )
 }
 
