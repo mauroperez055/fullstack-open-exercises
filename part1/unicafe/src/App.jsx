@@ -8,33 +8,26 @@ const Button = ({handleClick, text}) => {
   )
 }
 
-const Statistic = ({ text, value }) => {
+const StatisticViews = ({ text, value }) => {
   return <div>{text} {value}</div>
 }
 
-const All = ({ good, neutral, bad}) => {
-  const total = good + neutral + bad;
+const Statistic = ({ good, neutral, bad, points}) => {
+  console.log(points);
+  const all = good + neutral + bad;
+  const average = all === 0 ? 0 : (points/all);
+  const positive = good === 0 ? 0 : (good * 100)/all;
 
   return (
-    <Statistic text='all' value={total} />
-  )
-}
-
-const Average = ({ points, good, neutral, bad }) => {
-  console.log('puntaje acumulado', points);
-  const total = good + neutral + bad;
-  const average = ( total === 0 ? 0 : (points/total));
-
-  return (
-    <div>average {(average)}</div>
-  )
-}
-
-const Positive = ({ good, neutral, bad}) => {
-  const positive = good === 0 ? 0 : (good * 100 / (good + neutral + bad));
-
-  return (
-    <p>positive {positive}%</p>
+    <div>
+      <h1>statistics</h1>
+      <StatisticViews text='good' value={good}/>
+      <StatisticViews text='neutral' value={neutral}/>
+      <StatisticViews text='bad' value={bad}/>
+      <StatisticViews text='all' value={all}/>
+      <StatisticViews text='average' value={average}/>
+      <StatisticViews text='positive' value={positive + ' %'}/>
+    </div>
   )
 }
 
@@ -65,13 +58,7 @@ const App = () => {
       <Button handleClick={handleClickGood} text='good' />
       <Button handleClick={handleClickNeutral} text='neutral' />
       <Button handleClick={handleClickBad} text='bad' />
-      <h1>statistics</h1>
-      <Statistic text='good' value={good}/> 
-      <Statistic text='neutral' value={neutral}/> 
-      <Statistic text='bad' value={bad}/> 
-      <All good={good} neutral={neutral} bad={bad} />
-      <Average points={points} good={good} neutral={neutral} bad={bad} />
-      <Positive good={good} neutral={neutral} bad={bad} />
+      <Statistic good={good} neutral={neutral} bad={bad} points={points} />
     </div>
   )
 
