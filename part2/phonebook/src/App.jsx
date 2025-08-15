@@ -11,11 +11,9 @@ const App = () => {
   const [newFilter, setNewFilter] = useState('');
 
   useEffect(() => {
-    console.log('efect');
     axios
       .get('http://localhost:3002/persons')
       .then(response => {
-        console.log('promise fulfilled');
         setPersons(response.data);
       })
   }, []);
@@ -33,9 +31,13 @@ const App = () => {
       setNewName('');
       setNewNumber('');
     } else {
-      setPersons(persons.concat(personObject));
-      setNewName('');
-      setNewNumber('');
+      axios
+        .post('http://localhost:3002/persons', personObject)
+        .then(response => {
+          setPersons(persons.concat(response.data));
+          setNewName('');
+          setNewNumber('');
+        })
     }
   }
 
