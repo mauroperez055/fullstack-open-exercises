@@ -27,7 +27,14 @@ const App = () => {
       number: newNumber
     }
     if (persons.some(person => person.name.toLocaleUpperCase() === newName.toLocaleUpperCase())) {
-      alert(`${newName} is already added to phonebook`);
+      const person = persons.find(p => p.name.toLocaleUpperCase() === newName.toLocaleUpperCase());
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        personService
+          .update(person.id, personObject)
+          .then(returnedPerson => {
+            setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson));
+          })
+      }
       setNewName('');
       setNewNumber('');
     } else {
