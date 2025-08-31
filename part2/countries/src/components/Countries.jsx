@@ -1,9 +1,14 @@
 import Country from './Country';
+import Weather from './Weather';
 
 const Countries = ({ countries, selectedCountry, onShowCountry }) => { 
   console.log('Countries to show: ', countries.length);
+  console.log('Selected country:', selectedCountry);
 
   if(selectedCountry) {
+    console.log('selectedCountry structure:', selectedCountry);
+    console.log('selectedCountry.name:', selectedCountry.name);
+
     return (
       <div>
         <h1>{selectedCountry.name.common}</h1>
@@ -20,6 +25,7 @@ const Countries = ({ countries, selectedCountry, onShowCountry }) => {
           alt={`flag of ${selectedCountry.name.common}`} 
           width='150'
         />
+        <Weather capital={selectedCountry.capital} />
       </div>
     )
   }
@@ -61,6 +67,7 @@ const Countries = ({ countries, selectedCountry, onShowCountry }) => {
           alt={`flag of ${country.name.common}`} 
           width='150' 
         />
+        <Weather capital={country.capital} />
       </div>
     )
   }
